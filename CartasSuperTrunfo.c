@@ -10,6 +10,8 @@ int main(){
     float area; //em km quadrados
     float pib;
     int NP_turistico; //número de pontos turísticos
+    float S_poder; //super poder
+
  //armazenamento da carta 2
     char estado_2;
     char cd_carta_2[4];
@@ -18,6 +20,7 @@ int main(){
     float area_2;
     float pib_2;
     int NP_turistico_2;
+    float S_poder_2;
 
 
   //interação com o usuario  
@@ -33,7 +36,7 @@ int main(){
       scanf("%d", &populacao);
       
       printf("Digite o nome da cidade: \n");
-      scanf("%s", &nome_CD);
+      scanf("%s", nome_CD);
 
       printf("Digite a área da cidade: \n");
       scanf("%f", &area);
@@ -44,6 +47,13 @@ int main(){
       printf("Digite quantos pontos turisticos existem na cidade: \n");
       scanf("%d", &NP_turistico);
 
+    float Densi_populacional = (float) populacao / area;
+    float PIB_per_capi = pib /(float) populacao;
+
+    //calculo do super poder
+  int s_poder = estado + populacao + area + pib + NP_turistico + Densi_populacional + PIB_per_capi;
+
+
   //carta 2
     printf("Digite os dados da Carta 2\n");
       printf("Digite a letra do estado da carta 2: \n");
@@ -53,7 +63,7 @@ int main(){
       scanf("%s", cd_carta_2);
 
       printf("Digite o nome da cidade: \n");
-      scanf("%s", &nome_CD_2);
+      scanf("%s", nome_CD_2);
 
       printf("Digite a população da cidade: \n");
       scanf("%d", &populacao_2);
@@ -66,15 +76,40 @@ int main(){
 
       printf("Digite o número de pontos turisticos: \n");
       scanf("%d", &NP_turistico_2);
+    
+    float Densi_populacional_2 = (float) populacao_2 / area_2;
+    float PIB_per_capi_2 = pib_2 /(float) populacao_2;
+
+    int s_poder_2 = estado_2 + populacao_2 + area_2 + pib_2 + NP_turistico_2 + 
+    Densi_populacional_2 + PIB_per_capi_2;
 
 //primeiro print com todos os dados
 printf("A sua primeira carta é\n");
-printf("Carta 1:\n" "Estado: %c\n" "Código: %s\n" "Nome da cidade: %c\n" "População: %d\n" "Área: %.2fkm² \n" "PIB: %.2f\n" "Número de pontos túristicos: %d\n", estado, cd_carta, nome_CD, populacao, area, pib, NP_turistico);
+printf("Carta 1:\n" "Estado: %c\n" "Código: %s\n" 
+  "Nome da cidade: %s\n" "População: %d\n" "Área: %.2fkm² \n" "PIB: %.2f\n" 
+  "Número de pontos túristicos: %d\n" "Densidade populacional: %f\n" 
+  "PIB per capita: %.2f\n" "S_poder %f\n", estado, cd_carta, nome_CD, 
+  populacao, area, pib, NP_turistico, Densi_populacional, PIB_per_capi);
 
 //segundo print tambem com todos os dados
 printf("A sua segunda carta é:\n");
-printf("Carta 2:\n" "Estado: %c\n" "Código: %s\n" "Nome da cidade: %c\n" "População: %d\n" "Área: %.2fkm² \n" "PIB: %.2f\n" "Número de pontos túristicos: %d\n", estado_2, cd_carta_2, nome_CD_2, populacao_2, area_2, pib_2, NP_turistico_2);
+printf("Carta 2:\n" "Estado: %c\n" "Código: %s\n" 
+  "Nome da cidade: %s\n" "População: %d\n" "Área: %.2fkm² \n" "PIB: %.2f\n" 
+  "Número de pontos túristicos: %d\n" "Densidade populacional: %f\n" 
+  "PIB per capita: %.2f\n " "S_poder_2 %f\n", estado_2, cd_carta_2, 
+  nome_CD_2, populacao_2, area_2, pib_2, NP_turistico_2, Densi_populacional_2, PIB_per_capi_2);
 
+//saída da carta vencedora
+printf("Comparção de cartas: \n" 
+  "população: Carta %d venceu\n" 
+  "Área: Carta %d venceu\n" 
+  "PIB: Carta %d venceu\n" 
+  "ponto turistico: Carta %d venceu\n"
+  "Densidade populacional: Carta %d venceu\n"
+  "PIB per capital: Carta %d venceu\n"
+  "super poder: Carta %d venceu\n",
+populacao > populacao_2 ? 1 : 2, area > area_2 ? 1 : 2, pib > pib_2 ? 1 : 2, NP_turistico > NP_turistico_2 ? 1 : 2,
+Densi_populacional > Densi_populacional_2 ? 1 : 2, PIB_per_capi > PIB_per_capi_2 ? 1 : 2, s_poder > s_poder_2 ? 1 : 2);
 
  return 0;
 
